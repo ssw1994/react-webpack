@@ -1,0 +1,70 @@
+@import "../variables";
+.header {
+  height: 50px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: $primary;
+  color: $secondary;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 30px 0;
+}
+.menus {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  .hamburger-icon {
+    svg {
+      width: 2em !important;
+      height: 1.3em !important;
+    }
+  }
+  .nav-list {
+    nav {
+      ul {
+        list-style: none;
+        display: flex;
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        align-items: center;
+        justify-content: center;
+
+        .active {
+          border-color: $secondary;
+          display: inline-block;
+          cursor: pointer;
+          background: $secondary;
+
+          a {
+            color: $primary;
+          }
+        }
+
+        li {
+          padding: 0px 15px;
+          margin: 0px 5px;
+          border: 1px solid $primary;
+          &:hover {
+            border-color: $secondary;
+            display: inline-block;
+            cursor: pointer;
+            background: $secondary;
+
+            a {
+              color: $primary;
+            }
+          }
+          a {
+            margin: 15px;
+            display: block;
+            font-size: $font_large;
+            color: $secondary;
+            font-family: $font_family;
+          }
+        }
+      }
+    }
+  }
+}
