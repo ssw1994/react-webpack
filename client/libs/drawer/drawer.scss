@@ -1,0 +1,33 @@
+@import "../variables";
+.drawer {
+  width: 150px;
+  background: $primary;
+  color: $secondary;
+  height: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: block;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  .close-btn {
+    svg {
+      position: relative;
+      top: 0;
+      left: 100%;
+      cursor: pointer;
+      color: red;
+      font-weight: bolder;
+    }
+  }
+
+  .drawer-menu {
+    ul {
+      li {
+        line-height: 2.5rem;
+      }
+    }
+  }
+}

@@ -6,3 +6,18 @@ body {
 body #root {
   height: 100% !important;
 }
+
+svg {
+  cursor: pointer;
+}
+
+.counter div {
+  padding: 0px !important;
+}
+.b-shadow {
+  /* box-shadow: 5px 5px 20px !important; */
+  /* box-shadow: 0 10px 10px -5px !important; */
+  /* box-shadow: 0 0 10px !important; */
+
+  box-shadow: 0 0 10px 5px !important;
+}

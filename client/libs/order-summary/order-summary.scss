@@ -1,0 +1,38 @@
+@import "../variables";
+.order-summary {
+  .caption {
+    font-size: $font_extra_large;
+    font-family: $font-family;
+    font-weight: $font-weight-large;
+    padding: 10px;
+  }
+  .heading {
+    font-family: $font-family;
+    font-size: $font_large;
+    font-weight: $font-weight-medium;
+
+    a {
+      color: $primary;
+
+      &:hover {
+        color: $divider;
+      }
+    }
+  }
+  .subheading {
+    font-family: $font-family;
+    font-size: $font-small;
+    font-weight: $font-weight-small;
+
+    .q-details {
+      opacity: 0.8;
+    }
+  }
+  .cart-total,
+  .total {
+    font-family: $font-family;
+    font-size: $font_large;
+    font-weight: $font-weight-large;
+    color: $success;
+  }
+}

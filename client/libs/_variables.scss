@@ -1,12 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap");
 // colors
 $primary: black;
 $secondary: white;
 $danger: red;
 $success: green;
 $warning: orange;
+$divider: blue;
 
 //fonts family
-$font_family: "courier";
+//$font_family: "Courier";//"Roboto", sans-serif;
+$font_family: "Roboto", sans-serif;
 
 //font size
 $font_extra_small: 10px;
@@ -14,3 +17,7 @@ $font_small: 12px;
 $font_medium: 14px;
 $font_large: 16px;
 $font_extra_large: 18px;
+
+$font-weight-large: 900;
+$font-weight-medium: 600;
+$font-weight-small: 300;

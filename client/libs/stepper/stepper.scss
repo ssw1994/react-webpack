@@ -1,0 +1,36 @@
+@import "../variables";
+$border-size: 5px;
+.stepper {
+  .MuiCardHeader-root {
+    padding-left: 40px;
+    color: $primary;
+    background: $secondary;
+    font-family: $font_family;
+    border-bottom: $border-size solid $primary;
+  }
+  .MuiCardContent-root {
+    padding: 0px;
+    color: $primary;
+    background: $secondary;
+    font-family: $font_family;
+  }
+  .MuiCardActions-root {
+    display: flex;
+    padding: 8px 40px;
+    align-items: center;
+    background: $secondary;
+    border-top: $border-size solid $primary;
+    .step-action {
+      width: 100%;
+      background: $secondary;
+      .next-btn {
+        float: right;
+      }
+      button {
+        background: $primary;
+        color: $secondary;
+        font-family: $font_family;
+      }
+    }
+  }
+}

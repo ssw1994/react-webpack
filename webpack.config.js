@@ -4,10 +4,11 @@ var webpack = require("webpack");
 module.exports = {
   entry: "./client/index.js",
   output: {
-    path: path.join(__dirname, "client"),
+    path: path.join(__dirname, "client/dist"),
     filename: "bundle.js",
   },
   node: { fs: "empty" },
+  mode: "development",
   module: {
     rules: [
       {
@@ -15,7 +16,7 @@ module.exports = {
         loader: "babel-loader",
         exclude: /node_modules/,
         query: {
-          presets: ["@babel/react", "@babel/preset-env"],
+          presets: ["@babel/preset-env", "@babel/react"],
           plugins: ["@babel/proposal-class-properties"],
         },
       },

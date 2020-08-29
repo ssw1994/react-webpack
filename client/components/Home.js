@@ -1,12 +1,12 @@
 import React from "react";
-
+import Products from "./products";
 class Home extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    return <h1>Home</h1>;
+    return <Products />;
   }
 }
 

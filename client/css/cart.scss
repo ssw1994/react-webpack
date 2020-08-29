@@ -1,0 +1,21 @@
+@import "../libs/variables";
+.user-cart {
+  padding: 0px;
+  .MuiPaper-root {
+    margin-top: 15px;
+    background: $secondary;
+    border-radius: 0px !important;
+  }
+  .product-info {
+    margin: 5px 0px !important;
+    padding: 15px;
+  }
+  ::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
+  /* Optional: show position indicator in red */
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+}

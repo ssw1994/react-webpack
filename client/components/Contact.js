@@ -1,12 +1,11 @@
 import React from "react";
-
 class Contact extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  componentDidMount() {}
   render() {
-    return <h1>Contacts</h1>;
+    return <></>;
   }
 }
 

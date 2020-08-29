@@ -1,7 +1,7 @@
 @import "../variables";
 .header {
   height: 50px;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   background: $primary;
@@ -10,11 +10,13 @@
   align-items: center;
   justify-content: flex-start;
   padding: 30px 0;
+  z-index: 1;
 }
 .menus {
   display: flex;
   justify-items: center;
   align-items: center;
+  width: 100%;
   .hamburger-icon {
     svg {
       width: 2em !important;
@@ -65,6 +67,15 @@
           }
         }
       }
+    }
+  }
+
+  .user-info {
+    position: absolute;
+    right: 0px;
+    margin-right: 100px;
+    span {
+      margin: 0 15px;
     }
   }
 }

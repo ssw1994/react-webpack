@@ -1,37 +1,46 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import menus from "./routes";
-import { clearCache } from "ejs";
+import { Home } from "../components";
+import { connect } from "react-redux";
+import { closedrawer } from "../store/actions/drawer.action";
 class RouterOutlet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       routerStyle: {
         position: "absolute",
-        top: 50,
+        top: 60,
+        width: "100%",
       },
     };
+    this.bodyRef = React.createRef();
   }
 
   componentDidMount() {
-    // document.addEventListener("resize", () => {
-    //   let routerStyle = {
-    //     position: "absolute",
-    //     top: document.getElementsByClassName("header")[0]?.scrollHeight,
-    //     bottom: document.getElementsByClassName("footer")[0]?.scrollHeight,
-    //   };
-    //   console.log(routerStyle);
-    //   //this.setState({ routerStyle: routerStyle });
-    // });
+    this.bodyRef.current.addEventListener("click", () => {
+      this.props.closeDrawer();
+    });
+  }
+
+  componentWillUnmount() {
+    this.bodyRef.current.removeEventListener("click");
   }
 
   render() {
     return (
-      <div className="router-outlet" style={this.state.routerStyle}>
+      <div
+        className="router-outlet"
+        style={this.state.routerStyle}
+        ref={this.bodyRef}
+      >
         <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
           {menus.map((route) => {
             return (
-              <Route path={route.link}>
+              <Route path={route.link} key={route.id} exact>
                 <route.component />
               </Route>
             );
@@ -41,4 +50,11 @@ class RouterOutlet extends React.Component {
     );
   }
 }
-export default RouterOutlet;
+const mapPropsToDispatch = (dispatch) => {
+  return {
+    closeDrawer: (payload = null) => {
+      dispatch(closedrawer());
+    },
+  };
+};
+export default connect(null, mapPropsToDispatch)(RouterOutlet);

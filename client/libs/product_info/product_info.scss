@@ -1,0 +1,60 @@
+@import "../_variables.scss";
+.MuiDialog-paperWidthSm {
+  min-width: 600px !important;
+  max-width: auto !important;
+}
+
+.MuiDialogTitle-root {
+  padding: 0px 10px !important;
+}
+
+.MuiDialogContent-root {
+  padding: 8px 0px !important;
+}
+.product-info {
+  .product-image {
+    height: 100%;
+    width: 100%;
+    background-size: 100% 100%;
+  }
+
+  .content {
+    border-left: 1px solid $primary;
+    div {
+      font-family: $font-family;
+      line-height: 40px;
+      font-weight: bolder;
+    }
+    .product-name {
+      color: $primary;
+      font-size: $font_extra_large;
+    }
+
+    .product-price {
+      color: $success;
+      font-size: $font_extra_large;
+    }
+
+    .product-category {
+      color: $primary;
+      font-size: $font_large;
+    }
+
+    .product-description {
+      color: $primary;
+      font-size: $font_large;
+    }
+
+    .action-btns {
+      padding: 0 !important;
+      margin: 0 !important;
+      div {
+        padding: 5px;
+      }
+      button {
+        border: 1px solid $primary;
+        width: 100%;
+      }
+    }
+  }
+}
