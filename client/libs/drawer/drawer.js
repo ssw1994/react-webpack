@@ -2,36 +2,13 @@ import React from "react";
 import "./drawer.scss";
 import { connect } from "react-redux";
 import { closedrawer } from "../../store/actions/drawer.action";
-import CloseIcon from "@material-ui/icons/Close";
+import * as SIDEBAR from "../sidebar/sidebar";
+import { sidebarTypes } from "../../libs/js/model";
+import { sidebar } from "../../store/selectors/util.selector";
 class Drawer extends React.Component {
-  drawerMenus = [
-    {
-      name: "Angular",
-      id: 1,
-      link: "/angular",
-      component: null,
-    },
-    {
-      name: "React",
-      id: 2,
-      link: "/react",
-      component: null,
-    },
-    {
-      name: "Vue",
-      id: 3,
-      link: "/vue",
-      component: null,
-    },
-    {
-      name: "Python",
-      id: 4,
-      link: "/python",
-      component: null,
-    },
-  ];
   constructor(props) {
     super(props);
+    console.log(this.props);
   }
 
   closeDrawer(event) {
@@ -39,23 +16,35 @@ class Drawer extends React.Component {
     this.props.closeDrawer();
   }
 
+  sidebarType(type) {
+    switch (type) {
+      case sidebarTypes.categories:
+        return <SIDEBAR.ProductCategories />;
+      case sidebarTypes.usersettings:
+        return <SIDEBAR.UsersSettings />;
+      default:
+        return null;
+    }
+  }
+
   render() {
     return (
-      <div className="drawer">
-        <div className="close-btn">
-          <CloseIcon onClick={(e) => this.closeDrawer(e)} />
-        </div>
-        <div className="drawer-menu">
-          <ul>
-            {this.drawerMenus.map((menu, id) => {
-              return <li key={id}>{menu.name}</li>;
-            })}
-          </ul>
+      <div className="col-md-12 col-sm-12 col-xs-12 padding0">
+        <div className="drawer">
+          <div className="drawer-menu">
+            {this.sidebarType(this.props?.sidebar)}
+          </div>
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    sidebar: sidebar(state),
+  };
+};
 const mapPropsToDispatch = (dispatch) => {
   return {
     closeDrawer: (payload = null) => {
@@ -63,4 +52,4 @@ const mapPropsToDispatch = (dispatch) => {
     },
   };
 };
-export default connect(null, mapPropsToDispatch)(Drawer);
+export default connect(mapStateToProps, mapPropsToDispatch)(Drawer);

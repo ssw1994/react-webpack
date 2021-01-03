@@ -7,6 +7,10 @@ import {
   FETCH_WISHLIST,
   ADD_TO_WISHLIST,
   UPDATE_QUANTITY,
+  CREATE_PRODUCT,
+  PRODUCT_CREATED_SUCCESSFULLY,
+  PRODUCT_CREATION_FAILED,
+  SEARCH_FOR_PRODUCT,
 } from "../actions/product.action";
 const initialState = {
   products: {
@@ -24,6 +28,15 @@ const initialState = {
     isFetching: false,
     error: null,
   },
+  newProduct: {
+    data: null,
+    loading: false,
+    error: false,
+  },
+  searchConfig: {
+    columns: ["productName"],
+    keyword: null,
+  },
   selectedProduct: null,
 };
 
@@ -33,6 +46,25 @@ export default function productReducer(state = initialState, action) {
       return { ...state, products: action.payload };
     case SELECT_PRODUCT:
       return { ...state, selectedProduct: action.payload };
+    case CREATE_PRODUCT:
+      return {
+        ...state,
+        products: {
+          data: [...state.products.data, action.payload.data],
+          isFetching: false,
+          error: false,
+        },
+      };
+    case PRODUCT_CREATED_SUCCESSFULLY: {
+      return {
+        ...state,
+        newProduct: {
+          data: action.payload.data,
+          error: action.payload.error,
+          loading: false,
+        },
+      };
+    }
     case ADD_TO_CART:
       if (!!action.payload.error) {
         return {
@@ -107,6 +139,12 @@ export default function productReducer(state = initialState, action) {
           ],
         },
       };
+    case SEARCH_FOR_PRODUCT:
+      return {
+        ...state,
+        searchConfig: { ...state.searchConfig, keyword: action.payload },
+      };
+
     default:
       return { ...state };
   }

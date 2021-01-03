@@ -13,10 +13,12 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Counter from "../counter/counter";
 import "./product_info.scss";
+import { isLoggedIn } from "../../store/selectors/user.selector";
 export class ProductInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    console.log(props);
   }
   componentWillUnmount() {
     this.props.selectProduct();
@@ -33,6 +35,7 @@ export class ProductInfo extends React.Component {
         <div className="row action-btns">
           <div className="col-6">
             <Button
+              disabled={!this.props.isLoggedIn}
               onClick={(e) =>
                 this.props.addToCart({ item: product, user: this.props.user })
               }
@@ -45,6 +48,7 @@ export class ProductInfo extends React.Component {
           </div>
           <div className="col-6">
             <Button
+              disabled={!this.props.isLoggedIn}
               onClick={(e) =>
                 this.props.addToWishList({
                   item: product,
@@ -107,6 +111,7 @@ const mapStateToProps = (state) => {
   return {
     product: state.productReducer.selectedProduct,
     user: state.userReducer.user,
+    isLoggedIn: isLoggedIn(state),
   };
 };
 const mapDispatchToProps = (dispatch) => {

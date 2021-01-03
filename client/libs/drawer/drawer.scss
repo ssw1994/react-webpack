@@ -1,16 +1,12 @@
 @import "../variables";
 .drawer {
-  width: 150px;
   background: $primary;
   color: $secondary;
-  height: auto;
+  z-index: 1;
   position: fixed;
-  left: 0;
   top: 0;
   bottom: 0;
-  z-index: 1;
-  display: block;
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  display: flex;
 
   .close-btn {
     svg {
@@ -24,10 +20,30 @@
   }
 
   .drawer-menu {
+    position: relative;
+    top: 50px;
+    width: 100%;
+    padding: 0px 15px;
     ul {
       li {
         line-height: 2.5rem;
+        list-style-type: none;
+
+        .MuiCheckbox-root {
+          color: $secondary;
+        }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .drawer {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .drawer {
+    width: 17%;
   }
 }

@@ -7,6 +7,9 @@ module.exports = {
     path: path.join(__dirname, "client/dist"),
     filename: "bundle.js",
   },
+  watchOptions: {
+    poll: true,
+  },
   node: { fs: "empty" },
   mode: "development",
   module: {

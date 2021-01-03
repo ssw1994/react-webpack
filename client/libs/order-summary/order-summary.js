@@ -11,7 +11,7 @@ function OrderSummary() {
   const cartItems = order.summary;
   const total = order.total;
   return (
-    <div className="order-summary">
+    <div className="order-summary" style={{ marginTop: "15px" }}>
       <Card className="b-shadow">
         <CardContent>
           <div className="col-md-12 col-sm-12 col-xs-12 order-item">

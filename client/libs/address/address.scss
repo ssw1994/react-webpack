@@ -1,0 +1,34 @@
+@import "../variables";
+.map {
+  padding: 15px;
+}
+.a-card {
+  height: 300px;
+  line-height: 30px;
+  .MuiCard-root {
+    color: $primary;
+    font-family: $font_family;
+    font-size: $font_medium;
+  }
+  .MuiCardHeader-title {
+    color: $success;
+    font-family: $font_family;
+    font-size: $font_large;
+  }
+}
+.selected {
+  .MuiCard-root {
+    background: $primary;
+    color: $secondary;
+    font-family: $font_family;
+    font-size: $font_medium;
+  }
+  .MuiCardHeader-title {
+    color: $success;
+    font-family: $font_family;
+    font-size: $font_large;
+  }
+}
+.saved-address {
+  margin-top: 25px !important;
+}

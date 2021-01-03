@@ -1,0 +1,25 @@
+@import "../variables";
+.contact-card {
+  width: 800px;
+  height: 500px;
+  .MuiCardContent-root:last-child {
+    padding-bottom: 0px;
+  }
+  .MuiCardContent-root {
+    padding: 0px;
+  }
+  .MuiCardHeader-root {
+    padding: 5px;
+    background: $primary;
+    color: $secondary;
+    margin-bottom: 17px;
+    .MuiCardHeader-content {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+  }
+  .h-150 {
+    height: 150px;
+  }
+}

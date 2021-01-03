@@ -1,0 +1,37 @@
+@import "../variables";
+.error {
+  input {
+    border: 1px solid red;
+  }
+}
+.user-types {
+  .card {
+    width: 150px;
+    height: 150px;
+    align-items: center;
+    display: grid;
+    margin: 15px auto;
+    .MuiSvgIcon-root {
+      width: 6em;
+      height: 4em;
+    }
+    span {
+      text-align: center;
+      font-family: $font-family;
+      font-size: $font_small;
+      color: inherit;
+    }
+  }
+  .active {
+    border: 1px solid $success;
+    color: $success;
+    .MuiSvgIcon-root {
+      fill: $success;
+    }
+  }
+  .action-btns {
+    border: 1px solid $primary;
+    width: auto;
+    color: $primary;
+  }
+}

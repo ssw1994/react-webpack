@@ -15,13 +15,16 @@ export default function Stepper() {
     activeStep: useSelector(activeStep),
   };
   return (
-    <div className="stepper">
+    <div className="stepper" style={{ marginTop: "15px" }}>
       <Card className="b-shadow">
         {StepperConfig.steps.map((step, index) => {
           return StepperConfig.activeStep === index ? (
             <div key={index}>
-              <CardHeader title={step.name}></CardHeader>
-              <CardContent>
+              <CardHeader
+                title={step.name}
+                className="stepper-title"
+              ></CardHeader>
+              <CardContent className="stepper-content s-scroll">
                 <div className="step" key={index}>
                   <div className="step-body">{<step.component />}</div>
                 </div>
@@ -29,33 +32,36 @@ export default function Stepper() {
             </div>
           ) : null;
         })}
-        <CardActions>
-          <div className="step-action">
-            {StepperConfig.steps.map((step, index) => {
-              return StepperConfig.activeStep === index ? (
-                <div key={index}>
-                  <Button
-                    className="pre-btn"
-                    disabled={StepperConfig.activeStep === 0}
-                    onClick={(e) => dispatch(prevStep())}
-                  >
-                    {step.prevTitle}
-                  </Button>
-                  <Button
-                    className="next-btn"
-                    disabled={
-                      StepperConfig.activeStep ===
-                      StepperConfig.steps.length - 1
-                    }
-                    onClick={(e) => dispatch(nextStep())}
-                  >
-                    {step.nextTitle}
-                  </Button>
-                </div>
-              ) : null;
-            })}
-          </div>
-        </CardActions>
+        {StepperConfig.steps?.length > 1 ? (
+          <CardActions className="stepper-actions">
+            <div className="step-action">
+              {StepperConfig.steps.map((step, index) => {
+                return StepperConfig.activeStep === index ? (
+                  <div key={index}>
+                    <Button
+                      className="pre-btn"
+                      disabled={StepperConfig.activeStep === 0}
+                      onClick={(e) => dispatch(prevStep())}
+                    >
+                      {step.prevTitle}
+                    </Button>
+                    <Button
+                      className="next-btn"
+                      disabled={
+                        StepperConfig.activeStep ===
+                        StepperConfig.steps.length - 1
+                      }
+                      onClick={(e) => dispatch(nextStep())}
+                    >
+                      {step.nextTitle}
+                    </Button>
+                  </div>
+                ) : null;
+              })}
+            </div>
+          </CardActions>
+        ) : null}
+        ;
       </Card>
     </div>
   );

@@ -1,0 +1,26 @@
+@import "../variables";
+.search-for-product {
+  width: 100%;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  top: 60px;
+  z-index: 1;
+  height: 60px;
+  display: flex;
+  background-color: $primary;
+
+  input {
+    width: 50%;
+    background: $secondary;
+    color: blue;
+    font-family: $font_family;
+    font-size: $font_large;
+    text-align: center;
+    font-weight: $font-weight-large;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

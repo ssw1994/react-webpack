@@ -1,6 +1,7 @@
 import axios from "axios";
+import CONFIG from "./api.config";
 export default (function productservice() {
-  let SERVICE_BASE_URL = "/api";
+  let SERVICE_BASE_URL = CONFIG.BASE_URL;
 
   let createApiUrl = function (url) {
     return `${SERVICE_BASE_URL}/${url}`;
@@ -50,7 +51,16 @@ export default (function productservice() {
       });
   };
 
-  let createProduct = function () {};
+  let createProduct = function (payload) {
+    return axios
+      .post(createApiUrl("products/saveproduct"), payload)
+      .then((response) => {
+        return { data: response.data, error: false };
+      })
+      .catch((error) => {
+        return { data: null, error: true };
+      });
+  };
 
   let deleteProduct = function () {};
 

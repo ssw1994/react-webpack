@@ -1,0 +1,8 @@
+@import "../libs/variables";
+.contactus {
+  height: calc(100vh - 50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $font_family;
+}

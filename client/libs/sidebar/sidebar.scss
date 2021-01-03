@@ -1,0 +1,43 @@
+@import "../variables";
+ul {
+  li {
+    cursor: pointer;
+  }
+}
+.s-menus {
+  .nav-list {
+    ul {
+      li {
+        list-style-type: none;
+        width: 100%;
+        border: 1px solid $secondary;
+        padding: 10px;
+        text-align: center;
+        margin: 10px 0px;
+        border-radius: 15px;
+        background: $primary;
+        a {
+          color: $secondary;
+          font-family: $font_family;
+          font-size: $font_medium;
+          background: $primary;
+        }
+        &.active {
+          width: 100%;
+          border: 1px solid $primary;
+          padding: 10px;
+          text-align: center;
+          margin: 10px 0px;
+          border-radius: 15px;
+          background: $secondary;
+          a {
+            color: $primary;
+            background: $secondary;
+            font-size: $font_large;
+            font-family: $secondary;
+          }
+        }
+      }
+    }
+  }
+}

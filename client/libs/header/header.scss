@@ -71,11 +71,22 @@
   }
 
   .user-info {
-    position: absolute;
-    right: 0px;
-    margin-right: 100px;
+    position: fixed;
+    right: 50px;
     span {
       margin: 0 15px;
+    }
+  }
+
+  .action-btns {
+    padding: 0 !important;
+    margin: 0 !important;
+    button {
+      border: 1px solid $secondary;
+      width: auto;
+      color: $secondary;
+      position: relative;
+      left: 20px;
     }
   }
 }

@@ -1,11 +1,30 @@
 var express = require("express");
 var router = express.Router();
 var faker = require("faker");
-const { date } = require("faker");
+const query = "mongodb://localhost:27017/store";
+var mongoose = require("mongoose");
+var ProductModel = require("../schemas/product.schema");
+const db = query;
+mongoose.Promise = global.Promise;
+mongoose.connect(
+  db,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (error) {
+    if (error) {
+      console.log("Error!" + error);
+    }
+  }
+);
 const getFakeProducts = () => {
   let products = [];
   for (let i = 0; i < 20; i++) {
     let obj = {};
+    obj["metadata"] = {
+      ownerId: Math.round(Math.random()),
+      owner: faker.name.firstName(),
+      company: faker.company.companyName(),
+      dataCreated: faker.date.past(),
+    };
     obj["images"] = [];
     for (let i = 0; i < 5; i++) obj["images"].push(faker.image.image());
     Object.keys(faker.commerce).forEach((key) => {
@@ -16,7 +35,10 @@ const getFakeProducts = () => {
   return products;
 };
 router.get("/", (req, res, next) => {
-  res.send(getFakeProducts());
+  ProductModel.find({}, function (err, products) {
+    if (!err) res.send(products.concat(getFakeProducts()));
+    else res.send([].concat(getFakeProducts()));
+  });
 });
 
 let cartItems = [];
@@ -67,5 +89,26 @@ router.post("/cart/remove", (req, res, next) => {
   } else {
     res.send(null);
   }
+});
+
+router.post("/saveproduct", (req, res, next) => {
+  let product = new ProductModel();
+  let data = req.body;
+  product.metadata = data.metadata;
+  product.images = data.images;
+  product.color = data.color;
+  product.department = data.department;
+  product.productName = data.productName;
+  product.price = data.price;
+  product.productMaterial = data.productMaterial;
+  product.product = data.product;
+
+  product.save(function (error, data) {
+    if (error) {
+      res.send(null);
+    } else {
+      res.send(data);
+    }
+  });
 });
 module.exports = router;
