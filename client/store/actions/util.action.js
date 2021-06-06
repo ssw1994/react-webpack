@@ -5,6 +5,7 @@ export const SHOW_HIDE_HEADER_FOOTER = "SHOW_HIDE_HEADER_FOOTER";
 export const SELECTED_CATEGORY = "SELECTED_CATEGORY";
 export const SIDEBAR_TYPE = "SIDEBAR_TYPE";
 export const SEND_MAIL = "SEND_MAIL";
+export const SHOW_ALERT = "SHOW_ALERT";
 export function updateAddress(payload) {
   return {
     type: UPDATE_ADDRESS,
@@ -45,5 +46,12 @@ export function sendMail(payload) {
   return {
     type: SEND_MAIL,
     payload: request,
+  };
+}
+
+export function handleAlert(payload) {
+  return {
+    type: SHOW_ALERT,
+    payload: payload,
   };
 }

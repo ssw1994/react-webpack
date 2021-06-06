@@ -1,4 +1,3 @@
-import store from "..";
 export const FETCH_PRODUCT = "FETCH_PRODUCT";
 export const SELECT_PRODUCT = "SELECT_PRODUCT";
 export const FETCH_CART = "FETCH_CART";
@@ -8,9 +7,11 @@ export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
 export const FETCH_WISHLIST = "FETCH_WISHLIST";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const SAVING_PRODUCT = "SAVING_PRODUCT";
 export const PRODUCT_CREATED_SUCCESSFULLY = "PRODUCT_CREATED_SUCCESSFULLY";
 export const PRODUCT_CREATION_FAILED = "PRODUCT_CREATION_FAILED";
 export const SEARCH_FOR_PRODUCT = "SEARCH_FOR_PRODUCT";
+export const CLEAR_NEW_PRODUCT = "CLEAR_NEW_PRODUCT";
 import productservice from "../../services/product.service";
 export function fetchProducts(payload) {
   const request = productservice.fetchProducts();
@@ -83,16 +84,36 @@ export function updateQuantity(payload) {
 }
 
 export function saveproduct(payload) {
-  const request = productservice.createProduct(payload);
-  return {
-    type: CREATE_PRODUCT,
-    payload: request,
+  return (dispatch) => {
+    dispatch({ type: SAVING_PRODUCT });
+
+    productservice
+      .createProduct(payload)
+      .then((response) => {
+        dispatch({
+          type: PRODUCT_CREATED_SUCCESSFULLY,
+          payload: { data: response.data, isFetching: false, error: false },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: PRODUCT_CREATION_FAILED,
+          payload: { data: null, isFetching: false, error: error },
+        });
+      });
   };
 }
 
 export function searchForProduct(payload) {
   return {
     type: SEARCH_FOR_PRODUCT,
+    payload: payload,
+  };
+}
+
+export default function clearNewProduct(payload) {
+  return {
+    type: CLEAR_NEW_PRODUCT,
     payload: payload,
   };
 }

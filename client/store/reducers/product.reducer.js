@@ -7,10 +7,10 @@ import {
   FETCH_WISHLIST,
   ADD_TO_WISHLIST,
   UPDATE_QUANTITY,
-  CREATE_PRODUCT,
   PRODUCT_CREATED_SUCCESSFULLY,
   PRODUCT_CREATION_FAILED,
   SEARCH_FOR_PRODUCT,
+  CLEAR_NEW_PRODUCT,
 } from "../actions/product.action";
 const initialState = {
   products: {
@@ -46,22 +46,30 @@ export default function productReducer(state = initialState, action) {
       return { ...state, products: action.payload };
     case SELECT_PRODUCT:
       return { ...state, selectedProduct: action.payload };
-    case CREATE_PRODUCT:
+    case PRODUCT_CREATED_SUCCESSFULLY:
       return {
         ...state,
         products: {
           data: [...state.products.data, action.payload.data],
           isFetching: false,
           error: false,
+          newProduct: action.payload.data,
         },
       };
-    case PRODUCT_CREATED_SUCCESSFULLY: {
+    case PRODUCT_CREATION_FAILED:
       return {
         ...state,
-        newProduct: {
-          data: action.payload.data,
+        products: {
+          ...state.products,
           error: action.payload.error,
-          loading: false,
+        },
+      };
+    case CLEAR_NEW_PRODUCT: {
+      return {
+        ...state,
+        products: {
+          ...state.products,
+          newProduct: null,
         },
       };
     }

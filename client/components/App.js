@@ -8,7 +8,7 @@ import Drawer from "../libs/drawer/drawer";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedUser } from "../store/selectors/user.selector";
 import { fetchAllAddress } from "../store/actions/address.action";
-import { drawer } from "../store/selectors/util.selector";
+import { drawer, alert } from "../store/selectors/util.selector";
 import ScrollToTop from "../libs/js/autoscroll";
 function App() {
   const dispatch = useDispatch();

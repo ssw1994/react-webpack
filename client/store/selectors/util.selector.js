@@ -22,3 +22,7 @@ export const sidebar = (state) => {
 export const mailStatus = (state) => {
   return state.utilReducer.mailStatus;
 };
+
+export const alert = (state) => {
+  return state.utilReducer.alert;
+};

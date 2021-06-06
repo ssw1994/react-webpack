@@ -52,14 +52,7 @@ export default (function productservice() {
   };
 
   let createProduct = function (payload) {
-    return axios
-      .post(createApiUrl("products/saveproduct"), payload)
-      .then((response) => {
-        return { data: response.data, error: false };
-      })
-      .catch((error) => {
-        return { data: null, error: true };
-      });
+    return axios.post(createApiUrl("products/saveproduct"), payload);
   };
 
   let deleteProduct = function () {};

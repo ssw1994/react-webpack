@@ -4,6 +4,7 @@ import {
   SELECTED_CATEGORY,
   SIDEBAR_TYPE,
   SEND_MAIL,
+  SHOW_ALERT,
 } from "../actions/util.action";
 
 const initialState = {
@@ -28,6 +29,10 @@ const initialState = {
   categories: [],
   sidebarType: null,
   mailStatus: null,
+  alert: {
+    show: false,
+    config: null,
+  },
 };
 export default function utilReducer(state = initialState, action) {
   switch (action.type) {
@@ -48,12 +53,19 @@ export default function utilReducer(state = initialState, action) {
         ...state,
         sidebarType: action.payload.sidebarType,
       };
-    case SEND_MAIL: {
+    case SEND_MAIL:
       return {
         ...state,
         mailStatus: action.payload,
       };
-    }
+
+    case SHOW_ALERT:
+      return {
+        ...state,
+        alert: {
+          config: state.payload,
+        },
+      };
     default:
       return { ...state };
   }

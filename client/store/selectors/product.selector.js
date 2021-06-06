@@ -21,7 +21,7 @@ export const myProducts = (state) => {
 };
 
 export const isproductCreatedSuccessfully = (state) => {
-  return state.productReducer.products.productCreation === true;
+  return state.productReducer.products?.newProduct;
 };
 
 export const columnsToSearch = (state) => {

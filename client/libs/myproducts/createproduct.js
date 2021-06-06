@@ -8,12 +8,47 @@ import { loggedUser } from "../../store/selectors/user.selector";
 import "./createproduct.scss";
 import { useSelector, useDispatch } from "react-redux";
 import * as moment from "moment";
-import { categories } from "../../store/selectors/util.selector";
-import { saveproduct } from "../../store/actions/product.action";
+import { categories, alert } from "../../store/selectors/util.selector";
+import { isproductCreatedSuccessfully } from "../../store/selectors/product.selector";
+import {
+  saveproduct,
+  clearNewProduct,
+} from "../../store/actions/product.action";
+import { handleAlert } from "../../store/actions/util.action";
+import { buttonType } from "../../libs/js/model";
+import { useHistory } from "react-router-dom";
+
 export default function CreateProduct() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector(loggedUser);
   const categoryies = useSelector(categories);
+  const productSaved = useSelector(isproductCreatedSuccessfully);
+  const alertConfig = useSelector(alert);
+
+  const showAlert = () => {
+    dispatch(
+      handleAlert({
+        show: true,
+        config: {
+          title: "Success",
+          message: `Product created successfully : ${productSaved.productName}`,
+          buttonType: buttonType.Ok,
+        },
+        callBack: () => {
+          dispatch(clearNewProduct());
+          history.push({ pathname: "/profile/myproducts" });
+        },
+      })
+    );
+  };
+
+  useState(() => {
+    if (productSaved) {
+      showAlert();
+    }
+  });
+
   const [productForm, setProductForm] = useFormGroup({
     productName: InputProps(
       "",
@@ -96,9 +131,10 @@ export default function CreateProduct() {
   };
 
   const createProductForm = function () {
-    console.log(categoryies);
     return (
       <div className="row">
+        {alertConfig.show ? <Alert config={alertConfig.config} /> : null}
+
         <div className="col-md-8 col-sm-8 col-xs-12">
           <div className="row">
             {Object.keys(productForm).map((key, index) => {
